@@ -67,6 +67,7 @@ namespace AbcReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(662, 363);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnClose);

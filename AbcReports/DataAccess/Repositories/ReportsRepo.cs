@@ -24,7 +24,9 @@ namespace AbcReports.DataAccess.Repositories
                 .Where(r => r.Account.UserId == user.UserId).ToList();
 
             // HACK: necessary to work around broken lazy loading
-            Console.WriteLine(_context.Accounts.FirstOrDefault().Reports.ToList());
+            var accounts = _context.Accounts.ToList();
+            Console.WriteLine(accounts[0].Reports.ToList());
+            Console.WriteLine(accounts[1].Reports.ToList());
 
             return result;
         }

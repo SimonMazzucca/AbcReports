@@ -26,6 +26,8 @@ namespace AbcReports
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            btnLogin.Enabled = false;
+
             LoginRepo loginRepo = new LoginRepo(_context);
 
             if (loginRepo.IsLoginValid(this.txtUserName.Text, this.txtPassword.Text))
@@ -36,6 +38,8 @@ namespace AbcReports
             }
             else
                 MessageBox.Show("Invalid UserName or Password", "ABC Reports - Login Error");
+
+            btnLogin.Enabled = true;
         }
 
         private void LoginForm_Load(object sender, EventArgs e)

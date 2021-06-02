@@ -1,4 +1,5 @@
-﻿using AbcReports.DataAccess.Repositories;
+﻿using AbcReports.DataAccess.Domain;
+using AbcReports.DataAccess.Repositories;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -26,7 +27,8 @@ namespace AbcReports
 
         private void ReportForm_Load(object sender, EventArgs e)
         {
-            this.CenterToScreen();
+            CenterToScreen();
+            SetupListView();
             LoadReports();
         }
 
@@ -42,17 +44,19 @@ namespace AbcReports
                 ListViewItem lvi = GetAsListViewItem(report);
                 lvwReports.Items.Add(lvi);
             }
+        }
 
-            // ListView Setup
+        private void SetupListView()
+        {
             lvwReports.View = View.Details;
             lvwReports.Columns.Add("Report Name", 200);
-            lvwReports.Columns.Add("Created on", 80);
-            lvwReports.Columns.Add("Account Number", 100);
-            lvwReports.Columns.Add("Period", 60);
-            lvwReports.Columns.Add("Edit", 100);
-            lvwReports.Columns.Add("Delete", 100);
-
+            lvwReports.Columns.Add("Created on", 70);
+            lvwReports.Columns.Add("Account Number", 110);
+            lvwReports.Columns.Add("Period", 90);
+            lvwReports.Columns.Add("Edit", 80);
+            lvwReports.Columns.Add("Delete", 80);
             lvwReports.FullRowSelect = true;
+
             ListViewExtender extender = new ListViewExtender(lvwReports);
 
             ListViewButtonColumn btnEdit = new ListViewButtonColumn(4);
@@ -82,7 +86,7 @@ namespace AbcReports
             result.Tag = report.ReportId;
             result.SubItems.Add(report.CreationDate.ToString("MM/dd/yy"));
             result.SubItems.Add(report.Account.AccountNumber);
-            result.SubItems.Add(report.Period);
+            result.SubItems.Add(report.Period.ToVerbose());
             result.SubItems.Add("Edit");
             result.SubItems.Add("Delete");
 

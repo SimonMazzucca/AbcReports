@@ -43,6 +43,7 @@ namespace AbcReports
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(162, 23);
             this.btnClose.TabIndex = 0;
+            this.btnClose.TabStop = false;
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -61,8 +62,7 @@ namespace AbcReports
             this.txtUserName.Location = new System.Drawing.Point(95, 27);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(162, 23);
-            this.txtUserName.TabIndex = 2;
-            this.txtUserName.Text = "SMazzucca";
+            this.txtUserName.TabIndex = 1;
             // 
             // txtPassword
             // 
@@ -70,8 +70,7 @@ namespace AbcReports
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(162, 23);
-            this.txtPassword.TabIndex = 4;
-            this.txtPassword.Text = "abc1";
+            this.txtPassword.TabIndex = 2;
             // 
             // label2
             // 
@@ -87,15 +86,18 @@ namespace AbcReports
             this.btnLogin.Location = new System.Drawing.Point(95, 85);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(162, 23);
-            this.btnLogin.TabIndex = 5;
+            this.btnLogin.TabIndex = 0;
+            this.btnLogin.TabStop = false;
             this.btnLogin.Text = "&Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // LoginForm
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(282, 194);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);

@@ -1,4 +1,4 @@
-﻿namespace AbcReports.DataAccess.Domain
+﻿namespace AbcReports.DataAccess
 {
     public static class ExtensionMethods
     {

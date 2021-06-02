@@ -1,8 +1,7 @@
-﻿using AbcReports.DataAccess.Domain;
+﻿using AbcReports.DataAccess;
 using AbcReports.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace AbcReports

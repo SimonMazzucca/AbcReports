@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
@@ -40,17 +38,21 @@ namespace AbcReports
 
             modelBuilder.Entity<Account>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(x => x.AccountId);
 
                 entity.Property(e => e.AccountNumber)
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                //entity
+                //    .HasOne(x => x.AccountType)
+                //    .WithMany(x => x.Accounts);
             });
 
             modelBuilder.Entity<AccountTransaction>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(x => x.TransactionId);
 
                 entity.Property(e => e.AccountId)
                     .IsRequired()
@@ -74,7 +76,7 @@ namespace AbcReports
 
             modelBuilder.Entity<AccountType>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(x => x.AccountTypeId);
 
                 entity.Property(e => e.AccountTypeName)
                     .IsRequired()
@@ -84,7 +86,7 @@ namespace AbcReports
 
             modelBuilder.Entity<Report>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(x => x.ReportId);
 
                 entity.Property(e => e.CreationDate).HasColumnType("date");
 
@@ -98,11 +100,15 @@ namespace AbcReports
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity
+                    .HasOne(p => p.Account)
+                    .WithMany(b => b.Reports);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(x => x.UserId);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()

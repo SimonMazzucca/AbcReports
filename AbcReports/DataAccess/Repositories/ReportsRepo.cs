@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AbcReports.DataAccess.Repositories
@@ -20,9 +21,12 @@ namespace AbcReports.DataAccess.Repositories
                 .FirstOrDefault();
 
             List<Report> result = _context.Reports
-                .Where(r => r.AccountId == user.UserId).ToList();
+                .Where(r => r.Account.UserId == user.UserId).ToList();
 
-            return result ;
+            // HACK: necessary to work around broken lazy loading
+            Console.WriteLine(_context.Accounts.FirstOrDefault().Reports.ToList());
+
+            return result;
         }
     }
 }

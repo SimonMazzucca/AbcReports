@@ -1,5 +1,6 @@
 ﻿using AbcReports.DataAccess.Repositories;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AbcReports
@@ -46,7 +47,7 @@ namespace AbcReports
             lvwReports.View = View.Details;
             lvwReports.Columns.Add("Report Name", 200);
             lvwReports.Columns.Add("Created on", 80);
-            lvwReports.Columns.Add("Account Type", 100);
+            lvwReports.Columns.Add("Account Number", 100);
             lvwReports.Columns.Add("Period", 60);
             lvwReports.Columns.Add("Edit", 100);
             lvwReports.Columns.Add("Delete", 100);
@@ -63,7 +64,6 @@ namespace AbcReports
             btnDelete.Click += OnDeleteButtonActionClick;
             btnDelete.FixedWidth = true;
             extender.AddColumn(btnDelete);
-
         }
 
         private void OnEditButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
@@ -81,7 +81,7 @@ namespace AbcReports
             ListViewItem result = new ListViewItem(report.ReportName);
             result.Tag = report.ReportId;
             result.SubItems.Add(report.CreationDate.ToString("MM/dd/yy"));
-            result.SubItems.Add(report.AccountId.ToString());
+            result.SubItems.Add(report.Account.AccountNumber);
             result.SubItems.Add(report.Period);
             result.SubItems.Add("Edit");
             result.SubItems.Add("Delete");

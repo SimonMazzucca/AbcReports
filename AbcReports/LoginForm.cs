@@ -28,7 +28,7 @@ namespace AbcReports
         {
             btnLogin.Enabled = false;
 
-            LoginRepo loginRepo = new LoginRepo(_context);
+            UserRepo loginRepo = new UserRepo(_context);
 
             if (loginRepo.IsLoginValid(this.txtUserName.Text, this.txtPassword.Text))
             {

@@ -2,11 +2,11 @@
 
 namespace AbcReports.DataAccess.Repositories
 {
-    public class LoginRepo
+    public class UserRepo
     {
         ABCReportsContext _context;
 
-        public LoginRepo(ABCReportsContext context)
+        public UserRepo(ABCReportsContext context)
         {
             _context = context;
         }

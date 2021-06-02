@@ -1,6 +1,7 @@
 ﻿using AbcReports.DataAccess.Domain;
 using AbcReports.DataAccess.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -36,7 +37,7 @@ namespace AbcReports
         {
             // Retrive report data
             ReportsRepo repo = new ReportsRepo(_context);
-            System.Collections.Generic.IList<Report> reports = repo.GetUserReports(_userName);
+            IList<Report> reports = repo.GetUserReports(_userName);
 
             // Populate ListView
             foreach (var report in reports)

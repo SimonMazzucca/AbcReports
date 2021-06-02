@@ -19,10 +19,6 @@ namespace AbcReports
             InitializeComponent();
         }
 
-        private void Main_Load(object sender, EventArgs e)
-        {
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -33,10 +29,18 @@ namespace AbcReports
             LoginRepo loginRepo = new LoginRepo(_context);
 
             if (loginRepo.IsLoginValid(this.txtUserName.Text, this.txtPassword.Text))
-                //Close and open app
-                MessageBox.Show("Success");
+            {
+                ReportForm reportForm = new ReportForm(_context, this.txtUserName.Text);
+                reportForm.Show();
+                this.Hide();
+            }
             else
-                MessageBox.Show("Error");
+                MessageBox.Show("Invalid UserName or Password", "ABC Reports - Login Error");
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            this.CenterToScreen();
         }
     }
 }

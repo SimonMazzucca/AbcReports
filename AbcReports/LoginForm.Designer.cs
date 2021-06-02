@@ -62,7 +62,7 @@ namespace AbcReports
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(162, 23);
             this.txtUserName.TabIndex = 2;
-            this.txtUserName.Text = "SimonM";
+            this.txtUserName.Text = "SMazzucca";
             // 
             // txtPassword
             // 
@@ -107,7 +107,7 @@ namespace AbcReports
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.Text = "ABC Reports Login";
-            this.Load += new System.EventHandler(this.Main_Load);
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

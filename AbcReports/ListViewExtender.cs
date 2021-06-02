@@ -6,6 +6,10 @@ using System.Windows.Forms.VisualStyles;
 
 namespace AbcReports
 {
+    /// <summary>
+    /// This is not my code. It's just a wrapper somebody wrote
+    /// to allow having buttoins inside ListView items
+    /// </summary>
     public class ListViewExtender : IDisposable
     {
         private readonly Dictionary<int, ListViewColumn> _columns = new Dictionary<int, ListViewColumn>();

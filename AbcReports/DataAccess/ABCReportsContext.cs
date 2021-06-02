@@ -3,7 +3,7 @@
 #nullable disable
 
 /// <summary>
-/// https://www.thecodebuzz.com/entity-framework-windows-form-desktop-application/
+/// Disclaimer: most of this code is generated automatically.
 /// </summary>
 namespace AbcReports
 {

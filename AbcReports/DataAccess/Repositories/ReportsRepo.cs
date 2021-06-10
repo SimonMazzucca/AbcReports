@@ -31,6 +31,12 @@ namespace AbcReports.DataAccess.Repositories
             return result;
         }
 
+        internal Report GetReportDetails(int reportId)
+        {
+            Report result = _context.Reports.FirstOrDefault(r => r.ReportId == reportId);
+            return result;
+        }
+
         internal bool DeleteReport(int reportId)
         {
             var report = _context.Reports.FirstOrDefault(r => r.ReportId == reportId);

@@ -3,7 +3,6 @@ using AbcReports.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Linq;
 
 
 namespace AbcReports
@@ -11,6 +10,7 @@ namespace AbcReports
     public partial class ReportForm : Form
     {
 
+        ABCReportsContext _context;
         ReportsRepo _reportsRepo;
         string _userName;
 
@@ -21,6 +21,7 @@ namespace AbcReports
 
         public ReportForm(ABCReportsContext context, string userName)
         {
+            _context = context;
             _userName = userName;
             _reportsRepo = new ReportsRepo(context);
 
@@ -74,16 +75,19 @@ namespace AbcReports
 
         private void OnEditButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
         {
-            MessageBox.Show(this, @"EDIT: " + e.Item.Tag);
+            var reportId = (int)e.Item.Tag;
+            EditForm editForm = new EditForm(_context, reportId, _userName);
+            editForm.ShowDialog();
         }
 
         private void OnDeleteButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
         {
             DialogResult answer = MessageBox.Show(this, "Are you sure you want to delete report " + e.Item.Name + "?", "Delete Report?", MessageBoxButtons.YesNo);
+            var reportId = (int)e.Item.Tag;
 
             if (answer == DialogResult.Yes)
             {
-                _reportsRepo.DeleteReport((int)e.Item.Tag);
+                _reportsRepo.DeleteReport(reportId);
                 LoadReports();
             }
         }

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AbcReports.DataAccess.Repositories
 {
@@ -18,6 +20,12 @@ namespace AbcReports.DataAccess.Repositories
                 .FirstOrDefault();
 
             return result != null;
+        }
+
+        internal List<Account> GetUserAccounts(int userId)
+        {
+            List<Account> result = _context.Accounts.Where(a => a.UserId == userId).ToList();
+            return result;
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using AbcReports.DataAccess.Repositories;
 using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AbcReports
@@ -13,6 +10,8 @@ namespace AbcReports
     {
         ReportsRepo _reportsRepo;
         UserRepo _userRepo;
+        Report _report;
+        List<Account> _userAccounts;
 
         int _reportId;
         string _userName;
@@ -34,25 +33,41 @@ namespace AbcReports
 
         private void EditForm_Load(object sender, EventArgs e)
         {
-            Report report = _reportsRepo.GetReportDetails(_reportId);
-            List<Account> userAccounts = _userRepo.GetUserAccounts(1);
+            _report = _reportsRepo.GetReportDetails(_reportId);
+            _userAccounts = _userRepo.GetUserAccounts(1);
 
-            txtReportName.Text = report.ReportName;
+            txtReportName.Text = _report.ReportName;
             cmbAccounts.Items.Clear();
 
-            for (int i = 0; i < userAccounts.Count; i++)
+            for (int i = 0; i < _userAccounts.Count; i++)
             {
-                cmbAccounts.Items.Add(userAccounts[i].AccountNumber);
-                if (userAccounts[i].AccountId == report.Account.AccountId)
+                cmbAccounts.Items.Add(_userAccounts[i].AccountNumber);
+                if (_userAccounts[i].AccountId == _report.Account.AccountId)
                     cmbAccounts.SelectedIndex = i;
             }
 
-            if (report.Period == "PWK")
+            if (_report.Period == "PWK")
                 optPastWeek.Checked = true;
-            else if (report.Period == "MTD")
+            else if (_report.Period == "MTD")
                 optMonthToDate.Checked = true;
-            else if (report.Period == "YTD")
+            else if (_report.Period == "YTD")
                 optYearToDate.Checked = true;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string accountNumber = cmbAccounts.SelectedItem.ToString();
+            string period;
+
+            if (optPastWeek.Checked)
+                period = "PWK";
+            else if (optMonthToDate.Checked)
+                period = "MTD";
+            else 
+                period = "YTD";
+
+            _reportsRepo.SaveEditedReport(_report, txtReportName.Text, accountNumber, period);
+            this.Close();
         }
     }
 }

@@ -78,6 +78,8 @@ namespace AbcReports
             var reportId = (int)e.Item.Tag;
             EditForm editForm = new EditForm(_context, reportId, _userName);
             editForm.ShowDialog();
+
+            LoadReports();
         }
 
         private void OnDeleteButtonActionClick(object sender, ListViewColumnMouseEventArgs e)

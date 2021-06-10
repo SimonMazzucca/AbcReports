@@ -52,5 +52,16 @@ namespace AbcReports.DataAccess.Repositories
                 return true;
             }
         }
+
+        internal void SaveEditedReport(Report report, string reportName, string accountNumber, string period)
+        {
+            report.ReportName = reportName;
+
+            Account account = _context.Accounts.Where(a => a.AccountNumber.Equals(accountNumber)).FirstOrDefault();
+            report.Account = account;
+            report.Period = period;
+
+            _context.SaveChanges();
+        }
     }
 }

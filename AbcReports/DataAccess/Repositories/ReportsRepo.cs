@@ -30,5 +30,21 @@ namespace AbcReports.DataAccess.Repositories
 
             return result;
         }
+
+        internal bool DeleteReport(int reportId)
+        {
+            var report = _context.Reports.FirstOrDefault(r => r.ReportId == reportId);
+
+            if (report == null)
+            {
+                return false;
+            }
+            else
+            {
+                _context.Reports.Remove(report);
+                _context.SaveChanges();
+                return true;
+            }
+        }
     }
 }

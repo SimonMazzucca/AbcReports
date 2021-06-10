@@ -63,6 +63,7 @@ namespace AbcReports
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(162, 23);
             this.txtUserName.TabIndex = 1;
+            this.txtUserName.Text = "smazzucca";
             // 
             // txtPassword
             // 
@@ -71,6 +72,7 @@ namespace AbcReports
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(162, 23);
             this.txtPassword.TabIndex = 2;
+            this.txtPassword.Text = "abc1";
             // 
             // label2
             // 

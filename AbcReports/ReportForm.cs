@@ -3,13 +3,15 @@ using AbcReports.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
+
 
 namespace AbcReports
 {
     public partial class ReportForm : Form
     {
 
-        ABCReportsContext _context;
+        ReportsRepo _reportsRepo;
         string _userName;
 
         public ReportForm()
@@ -19,8 +21,8 @@ namespace AbcReports
 
         public ReportForm(ABCReportsContext context, string userName)
         {
-            _context = context;
             _userName = userName;
+            _reportsRepo = new ReportsRepo(context);
 
             InitializeComponent();
         }
@@ -35,10 +37,10 @@ namespace AbcReports
         private void LoadReports()
         {
             // Retrive report data
-            ReportsRepo repo = new ReportsRepo(_context);
-            IList<Report> reports = repo.GetUserReports(_userName);
+            IList<Report> reports = _reportsRepo.GetUserReports(_userName);
 
             // Populate ListView
+            lvwReports.Items.Clear();
             foreach (var report in reports)
             {
                 ListViewItem lvi = GetAsListViewItem(report);
@@ -77,7 +79,13 @@ namespace AbcReports
 
         private void OnDeleteButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
         {
-            MessageBox.Show(this, @"DEL: " + e.Item.Tag);
+            DialogResult answer = MessageBox.Show(this, "Are you sure you want to delete report " + e.Item.Name + "?", "Delete Report?", MessageBoxButtons.YesNo);
+
+            if (answer == DialogResult.Yes)
+            {
+                _reportsRepo.DeleteReport((int)e.Item.Tag);
+                LoadReports();
+            }
         }
 
         private ListViewItem GetAsListViewItem(Report report)

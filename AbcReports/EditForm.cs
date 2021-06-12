@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace AbcReports
 {
+
+    /// <summary>
+    /// Story 3: Edit Reports
+    /// </summary>
     public partial class EditForm : Form
     {
         ReportsRepo _reportsRepo;

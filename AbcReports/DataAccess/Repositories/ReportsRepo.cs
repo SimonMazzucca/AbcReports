@@ -37,6 +37,9 @@ namespace AbcReports.DataAccess.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Story 4: Delete Reports
+        /// </summary>
         internal bool DeleteReport(int reportId)
         {
             var report = _context.Reports.FirstOrDefault(r => r.ReportId == reportId);
@@ -53,6 +56,9 @@ namespace AbcReports.DataAccess.Repositories
             }
         }
 
+        /// <summary>
+        /// Story 3: Edit Reports
+        /// </summary>
         internal void SaveEditedReport(Report report, string reportName, string accountNumber, string period)
         {
             report.ReportName = reportName;

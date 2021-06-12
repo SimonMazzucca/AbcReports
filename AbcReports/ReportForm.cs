@@ -73,6 +73,9 @@ namespace AbcReports
             extender.AddColumn(btnDelete);
         }
 
+        /// <summary>
+        /// Story 3: Edit Reports
+        /// </summary>
         private void OnEditButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
         {
             var reportId = (int)e.Item.Tag;
@@ -82,6 +85,9 @@ namespace AbcReports
             LoadReports();
         }
 
+        /// <summary>
+        /// Story 4: Delete Reports
+        /// </summary>
         private void OnDeleteButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
         {
             DialogResult answer = MessageBox.Show(this, "Are you sure you want to delete report " + e.Item.Name + "?", "Delete Report?", MessageBoxButtons.YesNo);
